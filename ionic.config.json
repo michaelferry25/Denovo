@@ -1,0 +1,7 @@
+{
+  "name": "denovo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
