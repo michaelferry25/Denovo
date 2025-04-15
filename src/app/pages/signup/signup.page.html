@@ -1,0 +1,58 @@
+<ion-content class="signup-background">
+
+  <!-- Back Button -->
+  <ion-button fill="clear" class="back-button" routerLink="/landing">
+    <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+  </ion-button>
+
+  <!-- Header -->
+  <div class="header-section">
+    <img src="/assets/DenovoLogoBanner.jpg" alt="Denovo Logo" />
+    <h2 class="title">Create An Account</h2>
+    <h3 class="subtitle">Create an account to register with your Employer</h3>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card">
+
+    <div class="row">
+      <ion-input placeholder="Firstname" fill="outline" class="input" [(ngModel)]="form.firstName" required></ion-input>
+      <ion-input placeholder="Surname" fill="outline" class="input" [(ngModel)]="form.surname" required></ion-input>
+    </div>
+  
+    <div class="row">
+      <input
+        type="date"
+        placeholder="Date of Birth"
+        class="input native-date"
+        [(ngModel)]="form.dob"
+        required
+      />
+      <ion-input
+        placeholder="Employer Registration Number"
+        fill="outline"
+        class="input"
+        [(ngModel)]="form.employerNumber"
+        required
+      ></ion-input>
+    </div>
+  
+    <ion-input placeholder="Email" type="email" fill="outline" class="input" [(ngModel)]="form.email" required></ion-input>
+    <ion-input placeholder="Confirm Email" type="email" fill="outline" class="input" [(ngModel)]="form.confirmEmail" required></ion-input>
+  
+    <ion-input placeholder="Password" type="password" fill="outline" class="input" [(ngModel)]="form.password" required></ion-input>
+    <ion-input placeholder="Confirm Password" type="password" fill="outline" class="input" [(ngModel)]="form.confirmPassword" required></ion-input>
+  
+    <div class="terms">
+      <ion-toggle [(ngModel)]="form.acceptTerms"></ion-toggle>
+      <span>I have read and agree to <a href="#">Terms & Conditions.</a></span>
+    </div>
+  
+    <ion-button expand="block" class="signup-button" (click)="submitForm()">Create Account</ion-button>
+  
+    <p class="signin-link">
+      Already Have An Account? <a routerLink="/login">Sign In</a>
+    </p>
+  </div>
+
+</ion-content>
