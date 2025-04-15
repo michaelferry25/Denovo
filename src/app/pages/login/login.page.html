@@ -1,0 +1,28 @@
+<ion-content class="login-background">
+
+  <ion-button fill="clear" class="back-button" routerLink="/landing">
+    <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+  </ion-button>
+
+  <div class="header-section">
+    <img src="/assets/DenovoLogoBanner.jpg" alt="Denovo Logo" />
+    <h2 class="welcome-text">Welcome to<br />Denovo!</h2>
+    <h3 class="sub-text">Login to get<br />Started Today!</h3>
+  </div>
+
+  <div class="form-card">
+    <label>Email</label>
+    <ion-input type="email" fill="outline" class="input" placeholder="Enter your email"></ion-input>
+
+    <label>Password</label>
+    <ion-input type="password" fill="outline" class="input" placeholder="Enter your password"></ion-input>
+
+    <p class="reset-link">
+      Forgot Password?
+      <a routerLink="/forgot-password">Click here to Reset.</a>
+    </p>
+
+    <ion-button expand="block" class="login-button">Login</ion-button>
+  </div>
+
+</ion-content>
