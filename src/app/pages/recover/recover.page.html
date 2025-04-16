@@ -1,0 +1,38 @@
+<ion-content class="recover-background">
+
+  <ion-button fill="clear" class="back-button" routerLink="/login">
+    <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+  </ion-button>
+
+  <div class="header-section">
+    <img src="/assets/DenovoLogoBanner.jpg" alt="Denovo Logo" />
+    <h2 class="title">Recover your Account</h2>
+    <h3 class="subtitle">
+      Did you forget your password?<br />
+      Don't worry! We will help you get back into<br />
+      your account
+    </h3>
+  </div>
+
+  <div class="form-card">
+    <p class="info-text">
+      Please enter your email used to register an account<br />
+      We will send you a <strong>6 digit recovery code</strong><br />
+      When you the code receive please enter below
+    </p>
+
+    <ion-input type="email" placeholder="Email" class="input" fill="outline" [(ngModel)]="email"></ion-input>
+    <ion-input placeholder="Employer Registration Number" class="input" fill="outline" [(ngModel)]="employerId"></ion-input>
+
+    <p class="warning-text">Please DO NOT share this code with anyone</p>
+
+    <ion-button expand="block" class="send-code-button">Send code</ion-button>
+
+    <p class="resend-link"><a href="#">Resend Code?</a></p>
+
+    <ion-input placeholder="Code" class="input" fill="outline" [(ngModel)]="code"></ion-input>
+
+    <ion-button expand="block" class="submit-button">Submit</ion-button>
+  </div>
+
+</ion-content>
