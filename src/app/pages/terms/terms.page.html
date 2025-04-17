@@ -1,0 +1,173 @@
+<ion-content class="terms-background">
+
+  <!-- Back Button -->
+  <ion-button fill="clear" class="back-button" routerLink="/signup">
+    <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+  </ion-button>
+
+  <!-- Logo -->
+  <div class="logo-container">
+    <img src="/assets/DenovoLogoBanner.jpg" alt="Denovo Logo">
+  </div>
+
+  <!-- Scrollable Terms Container -->
+  <div class="terms-container">
+    <h2 class="title">Terms and Conditions Policy</h2>
+
+    <p class="intro">
+      These policies, accessible via our website and mobile application, outline the rules and regulations for using Denovo’s services. By accessing or using our platform, you agree to comply with and be bound by these terms. Please read them carefully.
+    </p>
+    <h2>Terms and Conditions Policy</h2>
+  
+    <p>
+      These policies, accessible via our website and mobile application, outline the rules and
+      regulations for using Denovo's services. By accessing or using our platform, you agree to comply
+      with and be bound by these terms. Please read them carefully.
+    </p>
+  
+    <h3>1. Agreement to Terms</h3>
+    <p>
+      By using Denovo's services and signing up for an account, you acknowledge and agree to abide by
+      all applicable laws and regulations. If you disagree with any part of these terms, please do not
+      use our services.
+    </p>
+  
+    <h3>2. Eligibility and User Responsibility</h3>
+    <p>
+      To access Denovo services, users must be at least 18 years old or of legal age in their jurisdiction.
+      Users are solely responsible for maintaining the confidentiality of their login credentials and are
+      accountable for all activities that occur under their account.
+    </p>
+  
+    <h3>3. Privacy Policy and Data Protection</h3>
+    <p>
+      Please see our Privacy Policy, which explains how we collect, use, and protect your data. By using
+      Denovo, you agree to the terms outlined in our data policy. We comply with GDPR regulations and
+      Irish data protection laws to safeguard your personal information.
+    </p>
+  
+    <h3>4. Limited Use Policy</h3>
+    <p>
+      Denovo services are intended solely for workforce management purposes, including scheduling,
+      human resource management, employee data storage, communication, and reporting. Users must not
+      misuse the services or engage in activities that contradict our policies or misrepresent our
+      company.
+    </p>
+  
+    <h3>5. Acceptable and Prohibited Uses</h3>
+      <p>Users must not:</p>
+      <ul>
+        <li>Use the platform for fraudulent, illegal, or unethical purposes.</li>
+        <li>Attempt to breach security measures or unauthorized access to data.</li>
+        <li>Distribute harmful software, spam, or any form of unauthorized communications.</li>
+      </ul>
+  
+    <h3>6. Intellectual Property Rights</h3>
+    <p>
+      All intellectual property rights related to the software, content, design, logos, trademarks, and
+      other materials provided by Denovo remain the property of Denovo or its licensors. Unauthorized
+      copying, reproduction, or redistribution is strictly prohibited.
+    </p>
+  
+    <h3>7. Third-Party Integrations and Services</h3>
+    <p>
+      Denovo may utilize third-party integrations to enhance its functionality. We do not control and
+      are not responsible for third-party service policies or practices. Users are encouraged to review
+      third-party terms and conditions independently.
+    </p>
+  
+    <h3>8. Subscription, Payment, and Refund Policy</h3>
+    <p>
+      Certain Denovo services require paid subscriptions. Payments are securely processed through
+      third-party payment gateways. All subscriptions renew automatically unless cancelled. Refunds are
+      issued at Denovo's discretion or as mandated by applicable law.
+    </p>
+  
+    <h3>9. User Content and Responsibility</h3>
+    <p>
+      Users retain ownership rights of any data or content they upload or generate through the
+      platform. However, users grant Denovo a license to use, display, and store such content as
+      necessary to operate the services and comply with legal requirements.
+    </p>
+  
+    <h3>10. Liability and Indemnification</h3>
+    <p>
+      Denovo shall not be liable for indirect, incidental, special, or consequential damages resulting
+      from the use or inability to use the service. Users agree to indemnify Denovo against any claims,
+      damages, or losses resulting from their breach of these terms.
+    </p>
+  
+    <h3>11. Service Availability and Modifications</h3>
+    <p>
+      Denovo strives to ensure continuous availability of services; however, we reserve the right to
+      interrupt or modify services at any time due to maintenance, updates, or other technical
+      requirements without prior notice.
+    </p>
+  
+    <h3>12. Termination of Account</h3>
+    <p>
+      Denovo reserves the right to suspend or terminate user accounts that violate these terms,
+      engage in unlawful activities, or negatively impact other users or the platform's reputation.
+    </p>
+  
+    <h3>13. Changes to These Terms</h3>
+    <p>
+      Denovo reserves the right to revise these Terms at any time. All changes will be posted within
+      the platform, and continued use signifies user acceptance of updated terms.
+    </p>
+  
+    <h3>14. Governing Law and Jurisdiction</h3>
+    <p>
+      These Terms shall be governed by and construed in accordance with Irish law. Any disputes
+      arising under or in connection with these Terms shall be subject to the exclusive jurisdiction of
+      the courts of Ireland.
+    </p>
+  
+    <h3>15. Severability</h3>
+    <p>
+      If any clause or provision of these Terms is found to be unlawful, invalid, or unenforceable,
+      the remaining clauses shall continue in full effect.
+    </p>
+  
+    <h3>16. Entire Agreement</h3>
+    <p>
+      These Terms represent the entire agreement between Denovo and its users regarding the use of
+      the platform and supersede any prior agreements.
+    </p>
+  
+    <h3>17. Contact Information</h3>
+    <p>
+      For any queries regarding these Terms, please contact us at:
+      <br><strong>Email:</strong> support&#64;denovoapp.com
+      <br><strong>Address:</strong> Denovo HQ, Galway City, Ireland
+    </p>
+  
+  </div>
+
+  <!-- Footer Section -->
+  <div class="terms-footer">
+    <div class="checkbox-container">
+      <ion-checkbox [(ngModel)]="isChecked"></ion-checkbox>
+      <span class="checkbox-label">I have read and agree to these Terms & Conditions.</span>
+    </div>
+  
+    <ion-button 
+      expand="block" 
+      color="success" 
+      class="agree-btn" 
+      [disabled]="!isChecked"
+      (click)="agree()">
+      Agree & Continue
+    </ion-button>
+
+    <ion-button 
+      expand="block" 
+      fill="outline" 
+      color="danger" 
+      class="disagree-btn"
+      (click)="disagree()">
+      Disagree
+    </ion-button>
+
+  </div>
+</ion-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -14,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })
-export class SignupPage {
+export class SignupPage implements OnInit {
+
   form = {
     firstName: '',
     surname: '',
@@ -27,7 +28,15 @@ export class SignupPage {
     acceptTerms: false
   };
 
+  agreedToTerms = false; 
+
   constructor(private toastController: ToastController) {}
+
+  ngOnInit() {
+    const agreed = localStorage.getItem('agreedToTerms');
+    this.agreedToTerms = agreed === 'true';
+    this.form.acceptTerms = this.agreedToTerms; 
+  }
 
   async submitForm() {
     const {

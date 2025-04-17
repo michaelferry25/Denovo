@@ -1,0 +1,120 @@
+.terms-background {
+    --background: #003933;
+  
+    .back-button {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 10;
+      color: #ffffff;
+      font-size: 24px;
+    }
+  
+    .logo-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 60px;
+      margin-bottom: 20px;
+  
+      img {
+        width: 160px;
+        height: auto;
+      }
+    }
+  
+    .terms-container {
+      background-color: #ffffff;
+      border-top-left-radius: 35px;
+      border-top-right-radius: 35px;
+      padding: 25px 25px 100px; // Extra space for footer
+      margin-top: 30px;
+      overflow-y: auto;
+      max-height: calc(100% - 140px);
+      box-shadow: 0px -3px 15px rgba(0, 0, 0, 0.15);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+  
+      .title {
+        text-align: center;
+        font-size: 22px;
+        font-weight: 700;
+        color: #003933;
+        margin-bottom: 15px;
+      }
+  
+      .intro {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+  
+      h3 {
+        color: #00574b;
+        margin-top: 22px;
+        margin-bottom: 10px;
+      }
+  
+      p {
+        text-align: justify;
+        margin-bottom: 15px;
+        font-size: 14.5px;
+        line-height: 1.7;
+      }
+  
+      .terms-footer {
+        background-color: #003933;
+        padding: 20px;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+        margin-top: 30px;
+        box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
+        text-align: center;
+      
+        .checkbox-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 20px;
+          gap: 12px;
+      
+          ion-checkbox {
+            --background-checked: #28a745;
+            --border-color-checked: #28a745;
+            width: 20px;
+            height: 20px;
+          }
+      
+          .checkbox-label {
+            color: #ffffff;
+            font-size: 13px;
+            line-height: 1.4;
+          }
+        }
+      
+        ion-button {
+          width: 220px;
+          height: 44px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          margin: 8px auto;
+          display: block;
+        }
+      
+        .agree-btn {
+          --background: #28a745;
+          --color: white;
+        }
+      
+        .agree-btn[disabled] {
+          --background: #7dcfa1;
+          opacity: 0.6;
+        }
+      
+        .disagree-btn {
+          --border-color: #dc3545;
+          --color: #dc3545;
+        }
+      }
+      
+    }
+  }
+  

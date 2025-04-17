@@ -24,4 +24,8 @@ export const routes: Routes = [
     path: 'recover',
     loadComponent: () => import('./pages/recover/recover.page').then( m => m.RecoverPage)
   },
+  {
+    path: 'terms',
+    loadComponent: () => import('./pages/terms/terms.page').then( m => m.TermsPage)
+  },
 ];
