@@ -1,0 +1,108 @@
+<ion-content [fullscreen]="true" class="home-content">
+  <!-- Top Navbar -->
+  <div class="top-navbar">
+    <ion-button fill="clear" routerLink="/login">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <div class="top-icons">
+      <ion-icon name="notifications-outline"></ion-icon>
+      <ion-icon name="mail-outline"></ion-icon>
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </div>
+  </div>
+
+  <!-- Scrollable Main Content -->
+  <div class="scrollable-area">
+    <div class="card-grid">
+      <ion-card class="dashboard-card">
+        <ion-card-header>
+          <ion-card-title>Leave</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Remaining: 10.8 hours<br />
+          Last updated: Yesterday
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="dashboard-card">
+        <ion-card-header>
+          <ion-card-title>Time</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          This week: 30.05 hours<br />
+          Yesterday
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="dashboard-card">
+        <ion-card-header>
+          <ion-card-title>Next Shift</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          On: 20 Mar 9:00<br />
+          Posted 10 Mar
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="dashboard-card">
+        <ion-card-header>
+          <ion-card-title>Work from Home</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          You have not scheduled a shift of this type yet<br />
+          <a>View Calendar</a>
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="logo-section">
+      <img src="/assets/DenovoLogoBanner.jpg" alt="Denovo Logo" />
+    </div>
+
+    <div class="reminders">
+      <h2>Reminders</h2>
+      <ion-list>
+        <ion-item>
+          <ion-checkbox slot="start"></ion-checkbox>
+          <ion-label>Meeting at 10am tomorrow</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox slot="start"></ion-checkbox>
+          <ion-label>Submit report</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox slot="start"></ion-checkbox>
+          <ion-label>Work night out 30/3/25</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox slot="start"></ion-checkbox>
+          <ion-label>Submit project before leave</ion-label>
+        </ion-item>
+      </ion-list>
+
+      <div class="holiday-countdown">
+        <h1>18</h1>
+        <p>Days until Holidays</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Navbar -->
+  <ion-footer class="bottom-navbar">
+    <ion-tab-bar>
+      <ion-tab-button tab="home">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="roster">
+        <ion-icon name="calendar-outline"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="calendar">
+        <ion-icon name="today-outline"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button tab="actions">
+        <ion-icon name="briefcase-outline"></ion-icon>
+        <ion-badge color="danger">1</ion-badge>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-footer>
+</ion-content>

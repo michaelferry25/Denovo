@@ -1,0 +1,80 @@
+.home-content {
+    --background: #003933;
+    padding: 0;
+  }
+  
+  .top-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #003933;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    z-index: 100;
+    color: white;
+  }
+  
+  .top-icons ion-icon {
+    font-size: 24px;
+    margin-left: 15px;
+    color: white;
+  }
+  
+  .scrollable-area {
+    margin-top: 60px;
+    margin-bottom: 70px;
+    padding: 16px;
+  }
+  
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  
+  .dashboard-card {
+    border-radius: 20px;
+    background-color: #3ec3f7;
+    color: black;
+  }
+  
+  .logo-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  .logo-section img {
+    width: 120px;
+  }
+  
+  .reminders {
+    background: #fff;
+    border-radius: 20px;
+    padding: 16px;
+    margin-bottom: 80px;
+  }
+  
+  .reminders h2 {
+    text-align: center;
+  }
+  
+  .holiday-countdown {
+    background-color: #f44336;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: 16px;
+  }
+  
+  .bottom-navbar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+  }
+  
