@@ -1,0 +1,84 @@
+<ion-content class="settings-background">
+
+  <div class="top-navbar">
+    <ion-icon name="arrow-back-outline" (click)="navigateTo('/home')"></ion-icon>
+    <span>Notifications</span>
+    <span>Messages</span>
+    <img src="/assets/profile-icon.png" alt="User Profile" class="settings-pic" />
+  </div>
+
+  <div class="card">
+    <ion-item lines="full" button (click)="navigateTo('/settings-edit')">
+      <ion-icon name="person-outline" slot="start"></ion-icon>
+      <ion-label>Back to Profile</ion-label>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-icon name="notifications-outline" slot="start"></ion-icon>
+      <ion-label>Notifications</ion-label>
+      <ion-toggle slot="end" [(ngModel)]="notificationsEnabled" (ionChange)="toggleNotifications()"></ion-toggle>
+    </ion-item>
+
+    <ion-item lines="none">
+      <ion-icon name="moon-outline" slot="start"></ion-icon>
+      <ion-label>Dark Mode</ion-label>
+      <ion-toggle slot="end" [(ngModel)]="darkModeEnabled" (ionChange)="toggleDarkMode()"></ion-toggle>
+    </ion-item>
+  </div>
+
+  <div class="card">
+    <ion-item lines="full" button>
+      <ion-icon name="shield-outline" slot="start"></ion-icon>
+      <ion-label>Security</ion-label>
+    </ion-item>
+
+    <ion-item lines="full" button (click)="navigateTo('/terms')">
+      <ion-icon name="document-text-outline" slot="start"></ion-icon>
+      <ion-label>Terms & Conditions</ion-label>
+    </ion-item>
+
+    <ion-item lines="none" button>
+      <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+      <ion-label>Help</ion-label>
+    </ion-item>
+  </div>
+
+  <div class="card">
+    <ion-item lines="full" button>
+      <ion-icon name="person-add-outline" slot="start"></ion-icon>
+      <ion-label>Invite a friend</ion-label>
+    </ion-item>
+
+    <ion-item lines="none" button (click)="logout()">
+      <ion-icon name="log-out-outline" slot="start"></ion-icon>
+      <ion-label>Logout</ion-label>
+    </ion-item>
+    
+  </div>
+
+  <ion-footer class="bottom-navbar">
+    <ion-tab-bar>
+      <ion-tab-button tab="home" (click)="navigateTo('/home')">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="roster" (click)="navigateTo('/roster')">
+        <ion-icon name="alarm-outline"></ion-icon>
+        <ion-label>Roster</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="calendar" (click)="navigateTo('/calendar')">
+        <ion-icon name="calendar-outline"></ion-icon>
+        <ion-label>Calendar</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="actions" (click)="navigateTo('/actions')">
+        <ion-icon name="document-outline"></ion-icon>
+        <ion-label>Actions</ion-label>
+        <ion-badge color="danger">1</ion-badge>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-footer>
+
+</ion-content>

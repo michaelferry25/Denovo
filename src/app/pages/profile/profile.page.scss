@@ -1,33 +1,39 @@
 .profile-background {
     --background: #003933;
-    padding-bottom: 60px;
+    color: white;
   }
   
-  .top-navbar {
+  .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 16px;
-    background: #222;
-    color: #fff;
+    padding: 12px;
   }
   
-  .profile-pic {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 1rem 0;
   }
   
-  .card {
-    background: #fff;
-    margin: 16px;
-    border-radius: 12px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  .profile-img {
+    width: 100px;
+    height: 100px;
   }
   
-  .bottom-navbar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+  .settings-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 22px;
+  }
+  
+  .profile-card {
+    margin: 12px;
+    background: white;
+    border-radius: 15px;
+    color: black;
   }
   
