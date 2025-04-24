@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule],
+  imports: [IonicModule, CommonModule, FormsModule, RouterLink],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
@@ -34,5 +35,8 @@ export class HomePage {
 
   signOut() {
     this.router.navigate(['/login']);
+  }
+  goToProfile() {
+    this.router.navigateByUrl('/profile');
   }
 }
