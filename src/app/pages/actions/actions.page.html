@@ -1,0 +1,80 @@
+<ion-header class="header">
+  <ion-toolbar class="top-toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Actions</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/notifications">
+        <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/messages">
+        <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/profile">
+          <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="actions-content">
+
+  <!-- Tab Bar -->
+  <div class="tab-bar">
+    <div [class.active]="activeTab === 'Pending'" (click)="switchTab('Pending')">Pending</div>
+    <div [class.active]="activeTab === 'Complete'" (click)="switchTab('Complete')">Complete</div>
+  </div>
+
+  <!-- Actions List -->
+  <div *ngIf="activeTab === 'Pending'" class="card-list">
+    <div *ngFor="let action of actions" class="action-card">
+      <div class="received-tag">Received</div>
+      <div class="action-content">
+        <p>{{ action.title }}</p>
+        <small>{{ action.daysAgo }} day ago</small>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="activeTab === 'Complete'" class="empty-state">
+    <p>No completed actions yet.</p>
+  </div>
+
+  <!-- Logo -->
+  <img src="/assets/DenovoLogoBanner.jpg" alt="Denovo Logo" class="denovo-logo">
+
+  <!-- Reminders -->
+  <div class="reminders-section">
+    <h3>Reminders</h3>
+    <div class="reminder-item" *ngFor="let reminder of reminders">
+      <ion-checkbox slot="start"></ion-checkbox>
+      <label>{{ reminder }}</label>
+    </div>
+
+    <div class="holiday-counter">
+      <div class="days">18</div>
+      <div class="text">Days until Holidays</div>
+    </div>
+  </div>
+
+</ion-content>
+
+<ion-footer class="footer">
+  <ion-toolbar>
+    <ion-buttons slot="start" class="footer-buttons">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="home-outline"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/roster">
+        <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/calendar">
+        <ion-icon slot="icon-only" name="calendar-clear-outline"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/actions">
+        <ion-icon slot="icon-only" name="document-text-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
