@@ -1,0 +1,107 @@
+.calendar-page {
+    --background: #00332c;
+    color: white;
+  
+    .rostered-card {
+      background: #f4f4f4;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      margin: 20px;
+      position: relative;
+  
+      .status-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #0066ff;
+        color: white;
+        font-size: 12px;
+        padding: 3px 8px;
+        border-radius: 6px;
+      }
+  
+      .rostered-info h2 {
+        font-size: 18px;
+        margin: 10px 0 5px;
+        color: #000;
+      }
+  
+      .rostered-info p {
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+      }
+    }
+  
+    .denovo-logo {
+      width: 100px;
+      display: block;
+      margin: 20px auto 15px;
+    }
+  
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 25px;
+  
+      .action-btn {
+        background: #007bff;
+        color: white;
+        font-weight: bold;
+        border-radius: 10px;
+        padding: 12px 20px;
+        font-size: 15px;
+        width: 140px;
+      }
+    }
+  
+    .reminders-card {
+      background: white;
+      margin: 0 20px 40px;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      color: #333;
+  
+      h3 {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+  
+      .reminder-list {
+        background: #1c1c1c;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+  
+        ion-item {
+          --background: transparent;
+          --padding-start: 0;
+          --inner-padding-end: 0;
+          --border-width: 0;
+          color: white;
+          font-size: 15px;
+          ion-checkbox {
+            margin-right: 10px;
+          }
+        }
+      }
+  
+      .holiday-countdown {
+        background: #ff1a1a;
+        border-radius: 10px;
+        padding: 15px 0;
+  
+        .count {
+          font-size: 28px;
+          font-weight: bold;
+        }
+        .label {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+  

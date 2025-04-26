@@ -1,0 +1,69 @@
+<ion-content class="calendar-page">
+  <ion-content class="calendar-page">
+    <!-- Top Navbar -->
+    <div class="top-navbar">
+      <div class="nav-left">
+        <ion-button fill="clear" size="small" (click)="goBack()">
+          <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+        </ion-button>
+        <div class="page-title">Calendar</div>
+      </div>
+      <div class="nav-right">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <ion-icon name="mail-outline"></ion-icon>
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
+    </div>
+  
+    <!-- Day Selector -->
+    <div class="day-selector">
+      <button (click)="changeDay('Previous')" class="day-button">&lt; Saturday</button>
+      <button (click)="changeDay('Today')" class="day-button today">Today</button>
+      <button (click)="changeDay('Next')" class="day-button">Saturday &gt;</button>
+    </div>
+
+  <!-- Rostered Hours Card -->
+  <div class="rostered-card">
+    <div class="status-badge">Approved</div>
+    <div class="rostered-info">
+      <h2>Rostered Hours:</h2>
+      <p>9:00 - 5:00</p>
+    </div>
+  </div>
+
+  <!-- Denovo Logo -->
+  <img class="denovo-logo" src="assets/DenovoLogoBanner.jpg" alt="Denovo Logo">
+
+  <!-- Add Leave / Add Time Buttons -->
+  <div class="action-buttons">
+    <ion-button class="action-btn" expand="block" color="primary" (click)="addLeave()">
+      + ADD LEAVE
+    </ion-button>
+    <ion-button class="action-btn" expand="block" color="primary" (click)="addTime()">
+      + ADD TIME
+    </ion-button>
+  </div>
+
+  <!-- Reminders Section -->
+  <div class="reminders-card">
+    <h3>Reminders</h3>
+    <div class="reminder-list">
+      <ion-item *ngFor="let reminder of reminders">
+        <ion-checkbox slot="start"></ion-checkbox>
+        <ion-label>{{ reminder.text }}</ion-label>
+      </ion-item>
+    </div>
+    <div class="holiday-countdown">
+      <div class="count">18</div>
+      <div class="label">Days until Holidays</div>
+    </div>
+  </div>
+
+  <!-- Bottom Navbar -->
+  <div class="bottom-navbar">
+    <ion-icon name="home-outline" routerLink="/home"></ion-icon>
+    <ion-icon name="calendar-outline" routerLink="/roster"></ion-icon>
+    <ion-icon name="calendar-number-outline" routerLink="/calendar"></ion-icon>
+    <ion-icon name="document-outline" routerLink="/actions"></ion-icon>
+  </div>
+</ion-content>
