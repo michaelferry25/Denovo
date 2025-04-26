@@ -39,4 +39,16 @@ export class HomePage {
   goToProfile() {
     this.router.navigateByUrl('/profile');
   }
+  goToAnnualLeave() {
+    this.router.navigate(['/annual-leave']);
+  }
+  goToCalendar(){
+    this.router.navigate(['/calendar']);
+  }
+  goToRoster(){
+    this.router.navigate(['/roster']);
+  }
+  goToActions(){
+    this.router.navigate(['/actions']);
+  }
 }

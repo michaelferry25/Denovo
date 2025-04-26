@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>Annual Leave</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
+        <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon name="mail-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="annual-leave-page">
+  <div class="date-buttons">
+    <button>Leave Balance</button>
+    <button>Request History</button>
+  </div>
+
+  <div class="leave-info-card">
+    <div class="approval-status">Approved</div>
+    <div class="leave-hours">
+      <p>Remaining Days:</p>
+      <strong>7 Days</strong>
+    </div>
+    <img src="assets/DenovoLogoBanner.jpg" alt="Denovo Logo" class="denovo-logo">
+  </div>
+
+  <div class="action-buttons">
+    <ion-button expand="block" class="primary-btn" (click)="requestLeave()">+ Request Leave</ion-button>
+    <ion-button expand="block" class="secondary-btn" (click)="viewRequests()">View Requests</ion-button>
+  </div>
+
+  <div class="reminders-section">
+    <h3>Reminders</h3>
+    <ul>
+      <li>Ensure leave request is 2 weeks in advance</li>
+      <li>Contact manager if emergency leave needed</li>
+    </ul>
+  </div>
+
+  <div class="holiday-countdown">
+    <div class="days-number">18</div>
+    <div class="days-label">Days until Holidays</div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon name="calendar-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
+        <ion-icon name="clipboard-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

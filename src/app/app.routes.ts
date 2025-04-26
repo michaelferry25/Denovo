@@ -52,4 +52,8 @@ export const routes: Routes = [
     path: 'calendar',
     loadComponent: () => import('./pages/calendar/calendar.page').then( m => m.CalendarPage)
   },
+  {
+    path: 'annual-leave',
+    loadComponent: () => import('./pages/annual-leave/annual-leave.page').then( m => m.AnnualLeavePage)
+  },
 ];

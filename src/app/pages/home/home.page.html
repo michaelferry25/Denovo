@@ -18,11 +18,14 @@
     <div class="card-grid">
       <ion-card class="dashboard-card">
         <ion-card-header>
-          <ion-card-title>Leave</ion-card-title>
+          <ion-card-title>Annual Leave</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           Remaining: 10.8 hours<br />
           Last updated: Yesterday
+        <ion-button expand="block" (click)="goToAnnualLeave()">
+            Request Leave?
+          </ion-button>
         </ion-card-content>
       </ion-card>
 
@@ -32,7 +35,8 @@
         </ion-card-header>
         <ion-card-content>
           This week: 30.05 hours<br />
-          Yesterday
+          Last Updated: Yesterday
+          <ion-button expand="block" (click)="goToRoster()">Clocked Hours</ion-button>
         </ion-card-content>
       </ion-card>
 
@@ -41,8 +45,11 @@
           <ion-card-title>Next Shift</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          On: 20 Mar 9:00<br />
-          Posted 10 Mar
+          On: 20 Mar 9:00<br/>
+          Posted 10 Mar<br/>
+          <ion-button expand="block" (click)="goToRoster()">
+            View Next Shift
+          </ion-button>
         </ion-card-content>
       </ion-card>
 
@@ -52,7 +59,9 @@
         </ion-card-header>
         <ion-card-content>
           You have not scheduled a shift of this type yet<br />
-          <a>View Calendar</a>
+          <ion-button expand="block" (click)="goToCalendar()">
+            Calendar
+          </ion-button>
         </ion-card-content>
       </ion-card>
     </div>
@@ -85,6 +94,7 @@
       <div class="holiday-countdown">
         <h1>18</h1>
         <p>Days until Holidays</p>
+        <ion-button expand="block" (click)="goToAnnualLeave()">View Holidays</ion-button>
       </div>
     </div>
   </div>
