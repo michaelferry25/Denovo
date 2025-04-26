@@ -1,69 +1,74 @@
-<ion-content class="calendar-page">
-  <ion-content class="calendar-page">
-    <!-- Top Navbar -->
-    <div class="top-navbar">
-      <div class="nav-left">
-        <ion-button fill="clear" size="small" (click)="goBack()">
-          <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-        </ion-button>
-        <div class="page-title">Calendar</div>
-      </div>
-      <div class="nav-right">
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" (click)="goBack()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Calendar</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear">
         <ion-icon name="notifications-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
         <ion-icon name="mail-outline"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear">
         <ion-icon name="person-circle-outline"></ion-icon>
-      </div>
-    </div>
-  
-    <!-- Day Selector -->
-    <div class="day-selector">
-      <button (click)="changeDay('Previous')" class="day-button">&lt; Saturday</button>
-      <button (click)="changeDay('Today')" class="day-button today">Today</button>
-      <button (click)="changeDay('Next')" class="day-button">Saturday &gt;</button>
-    </div>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
-  <!-- Rostered Hours Card -->
-  <div class="rostered-card">
-    <div class="status-badge">Approved</div>
-    <div class="rostered-info">
-      <h2>Rostered Hours:</h2>
-      <p>9:00 - 5:00</p>
-    </div>
+<ion-content class="calendar-page">
+  <div class="date-switcher">
+    <button (click)="changeDay('previous')">&lt; {{ previousDay }}</button>
+    <button (click)="changeDay('today')" class="today-btn">Today</button>
+    <button (click)="changeDay('next')">{{ nextDay }} &gt;</button>
   </div>
 
-  <!-- Denovo Logo -->
-  <img class="denovo-logo" src="assets/DenovoLogoBanner.jpg" alt="Denovo Logo">
+  <div class="hours-card">
+    <div class="approved-badge">Approved</div>
+    <div class="hours-info">
+      Rostered Hours: <br> 9:00 - 5:00
+    </div>
+    <img src="assets/DenovoLogoBanner.jpg" class="denovo-logo" alt="Denovo Logo">
+  </div>
 
-  <!-- Add Leave / Add Time Buttons -->
   <div class="action-buttons">
-    <ion-button class="action-btn" expand="block" color="primary" (click)="addLeave()">
-      + ADD LEAVE
-    </ion-button>
-    <ion-button class="action-btn" expand="block" color="primary" (click)="addTime()">
-      + ADD TIME
-    </ion-button>
+    <ion-button (click)="addLeave()">+ Add Leave</ion-button>
+    <ion-button (click)="addTime()">+ Add Time</ion-button>
   </div>
 
-  <!-- Reminders Section -->
   <div class="reminders-card">
-    <h3>Reminders</h3>
-    <div class="reminder-list">
-      <ion-item *ngFor="let reminder of reminders">
-        <ion-checkbox slot="start"></ion-checkbox>
-        <ion-label>{{ reminder.text }}</ion-label>
-      </ion-item>
-    </div>
-    <div class="holiday-countdown">
-      <div class="count">18</div>
-      <div class="label">Days until Holidays</div>
+    <h2>Reminders</h2>
+    <div class="reminder-item" *ngFor="let reminder of reminders">
+      <ion-checkbox [(ngModel)]="reminder.checked"></ion-checkbox>
+      <label>{{ reminder.text }}</label>
     </div>
   </div>
 
-  <!-- Bottom Navbar -->
-  <div class="bottom-navbar">
-    <ion-icon name="home-outline" routerLink="/home"></ion-icon>
-    <ion-icon name="calendar-outline" routerLink="/roster"></ion-icon>
-    <ion-icon name="calendar-number-outline" routerLink="/calendar"></ion-icon>
-    <ion-icon name="document-outline" routerLink="/actions"></ion-icon>
+  <div class="holiday-counter">
+    <div class="number">18</div>
+    <div class="text">Days until Holidays</div>
   </div>
+
+<!-- Bottom Navbar -->
+<ion-footer class="bottom-navbar">
+  <ion-tab-bar>
+    <ion-tab-button tab="home">
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button tab="roster">
+      <ion-icon name="calendar-outline"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button tab="calendar">
+      <ion-icon name="today-outline"></ion-icon>
+    </ion-tab-button>
+    <ion-tab-button tab="actions">
+      <ion-icon name="briefcase-outline"></ion-icon>
+      <ion-badge color="danger">1</ion-badge>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>
 </ion-content>
