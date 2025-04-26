@@ -16,38 +16,36 @@
   </div>
 
   <!-- Week Navigation -->
+  <div class="week-navigation">
+    <ion-icon name="chevron-back-outline" (click)="previousWeek()"></ion-icon>
+    <span>{{ formatDate(currentWeekStart) }} - {{ formatDate(currentWeekEnd) }}</span>
+    <ion-icon name="chevron-forward-outline" (click)="nextWeek()"></ion-icon>
+  </div>
 
-<!-- Week Navigation -->
-<div class="week-navigation">
-  <ion-icon name="chevron-back-outline" (click)="previousWeek()"></ion-icon>
-  <span class="week-text">{{ formatDate(currentWeekStart) }} - {{ formatDate(currentWeekEnd) }}</span>
-  <ion-icon name="chevron-forward-outline" (click)="nextWeek()"></ion-icon>
-</div>
-
-<!-- Roster Days -->
-<div class="roster-days">
-  <div class="day-card" *ngFor="let day of weekDays; let i = index" [ngStyle]="{'border-left': '6px solid ' + getColor(i)}">
-    <div class="day-content">
-      <strong>{{ day.dayName }} {{ day.dayDate }}</strong>
-      <p *ngIf="!day.dayOff">{{ day.shiftStart }} - {{ day.shiftEnd }}</p>
-      <p *ngIf="day.dayOff">Day Off</p>
-    </div>
-    <div class="day-hours">
-      <ion-icon name="time-outline"></ion-icon>
-      <span>{{ day.totalHours }}</span>
+  <!-- Roster Days -->
+  <div class="roster-days">
+    <div class="day-card" *ngFor="let day of weekDays">
+      <div class="day-bar"></div>
+      <div class="day-content">
+        <strong>{{ day.dayName }} {{ day.dayDate }}</strong>
+        <p *ngIf="!day.dayOff">{{ day.shiftStart }} - {{ day.shiftEnd }}</p>
+        <p *ngIf="day.dayOff">Day Off</p>
+      </div>
+      <div class="day-hours">
+        <ion-icon name="time-outline"></ion-icon>
+        <span>{{ day.totalHours }}</span>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Employee Info Card -->
-<div class="employee-info">
-  <img [src]="user.logo" (error)="onImageError($event)" alt="Company Logo" />
-  <h5>{{ user.employer }}</h5>
-  <h6>{{ user.department }}</h6>
-  <p>{{ user.name }}</p>
-  <p>{{ user.title }}</p>
-  <p>Employee Number: {{ user.employeeNumber }}</p>
-</div>
+  <!-- Employee Info Card -->
+  <div class="employee-info">
+    <img [src]="user.logo" alt="Company Logo" />
+    <h5>{{ user.employer }}</h5>
+    <h6>{{ user.department }}</h6>
+    <p>{{ user.name }}</p>
+    <p>{{ user.title }}</p>
+    <p>Employee Number: {{ user.employeeNumber }}</p>
+  </div>
 
-</ion-content>
 </ion-content>
