@@ -22,7 +22,11 @@ export class LoginPage {
   email: string = '';
   password: string = '';
 
-  constructor(private router: Router, private http: HttpClient, private toastController: ToastController) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private toastController: ToastController
+  ) {}
 
   async login() {
     if (!this.email || !this.password) {
@@ -37,13 +41,14 @@ export class LoginPage {
       }).toPromise();
 
       if (response.success) {
-        this.showToast('Login successful!');
+        localStorage.setItem('userEmail', this.email);
+        this.showToast('✅ Login successful!');
         this.router.navigateByUrl('/home');
       } else {
-        this.showToast('Login failed: ' + (response.message || 'Unknown error'));
+        this.showToast('❌ ' + (response.message || 'Login failed'));
       }
-    } catch (error) {
-      this.showToast('Login failed: Incorrect email or password');
+    } catch (err) {
+      this.showToast('❌ Incorrect email or password');
     }
   }
 
@@ -51,13 +56,13 @@ export class LoginPage {
     this.router.navigateByUrl('/landing');
   }
 
-  async showToast(message: string) {
-    const toast = await this.toastController.create({
+  private async showToast(message: string) {
+    const t = await this.toastController.create({
       message,
       duration: 2500,
       position: 'top',
-      color: 'danger'
+      color: message.startsWith('✅') ? 'success' : 'danger'
     });
-    toast.present();
+    t.present();
   }
 }

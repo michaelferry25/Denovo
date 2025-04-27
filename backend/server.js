@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const Company = require('./models/Company');
+
 // Set up app
 const app = express();
 const PORT = 3000;
@@ -152,7 +153,7 @@ app.post('/api/leave-request', async (req, res) => {
       res.status(500).json({ success: false, message: 'Failed to submit leave request' });
     }
   });
-  
+ 
   // GET leave requests
   app.get('/api/leave-request', async (req, res) => {
     const { email } = req.query;
@@ -169,6 +170,54 @@ app.post('/api/leave-request', async (req, res) => {
       res.status(500).json({ success: false, message: 'Failed to fetch leave requests' });
     }
   });
+
+// GET /api/user?email=...
+app.get('/api/user', async (req, res) => {
+    const { email } = req.query;
+    try {
+      const user = await User.findOne({ email });
+      if (!user) return res.status(404).json({ message: 'User not found' });
+      return res.json(user);
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ message: 'Server error' });
+    }
+  });
+  
+  // PUT /api/user  — update profile
+app.put('/api/user', async (req, res) => {
+    const { email, firstName, surname, phone, bio } = req.body;
+    try {
+      const user = await User.findOneAndUpdate(
+        { email },
+        { firstName, surname, phone, bio },
+        { new: true }
+      );
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+      // Only send back the fields your frontend needs
+      res.json({
+        success: true,
+        user: {
+          firstName: user.firstName,
+          surname:   user.surname,
+          email:     user.email,
+          employer:  user.employer,
+          department:user.department,
+          title:     user.title,
+          employeeNumber: user.employeeNumber,
+          logoUrl:   user.companyLogo || '',
+          phone:     user.phone,
+          bio:       user.bio
+        }
+      });
+    } catch(err) {
+      console.error(err);
+      res.status(500).json({ success:false, message:'Server error' });
+    }
+  });
+  
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
