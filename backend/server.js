@@ -14,7 +14,23 @@ app.use(cors());
 // MongoDB Connection
 mongoose.connect('mongodb://127.0.0.1:27017/denovo', {
 })
-.then(() => console.log('MongoDB Connected Successfully'))
+.then(async () => {
+    console.log('MongoDB Connected Successfully');
+
+    // AUTO-SEED DEFAULT COMPANIES IF NONE EXIST
+    const count = await Company.countDocuments();
+    if (count === 0) {
+      const defaults = [
+        { companyName: "Google",    companyId: "GOOGLE123",  department: "Engineering", title: "Software Engineer", logoUrl: "https://path.to/google-logo.png" },
+        { companyName: "Microsoft", companyId: "MSFT456",    department: "Product",     title: "Product Manager",    logoUrl: "https://path.to/ms-logo.png" },
+        { companyName: "Amazon",    companyId: "AMZN789",    department: "Operations",  title: "Operations Lead",    logoUrl: "https://path.to/amazon-logo.png" },
+        { companyName: "Stripe",    companyId: "STRIPE321",  department: "Finance",     title: "Financial Analyst",  logoUrl: "https://path.to/stripe-logo.png" },
+        { companyName: "Airbnb",    companyId: "AIRBNB654",  department: "Design",      title: "UX Designer",        logoUrl: "https://path.to/airbnb-logo.png" }
+      ];
+      await Company.insertMany(defaults);
+      console.log('✅ Seeded default companies');
+    }
+  })
 .catch((err) => console.error('MongoDB Connection Error:', err));
 
 // User model
@@ -104,11 +120,6 @@ app.post('/api/signup', async (req, res) => {
         return res.status(400).json({ message: 'User already exists' });
       }
   
-       // Validate company
-    const company = await Company.findOne({ companyId });
-    if (!company) {
-      return res.status(400).json({ message: 'Invalid company ID' });
-    }
   
       // Assign random employee number starting with 123
       const randomEmployeeNumber = `123${Math.floor(1000 + Math.random() * 9000)}`;
@@ -118,7 +129,8 @@ app.post('/api/signup', async (req, res) => {
         firstName,
         surname,
         dob,
-        employerNumber: randomEmployeeNumber,
+        employerNumber,
+        companyId:     String, 
         email,
         password,
         companyName: company.companyName,
