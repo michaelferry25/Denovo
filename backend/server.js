@@ -133,7 +133,42 @@ app.post('/api/signup', async (req, res) => {
     }
   });
   
-
+// POST leave request
+app.post('/api/leave-request', async (req, res) => {
+    const { email, startDate, endDate } = req.body;
+  
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+  
+      user.leaveRequests.push({ startDate, endDate });
+      await user.save();
+  
+      res.status(201).json({ success: true, message: 'Leave request submitted successfully' });
+    } catch (error) {
+      console.error('Error submitting leave request:', error);
+      res.status(500).json({ success: false, message: 'Failed to submit leave request' });
+    }
+  });
+  
+  // GET leave requests
+  app.get('/api/leave-request', async (req, res) => {
+    const { email } = req.query;
+  
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ success: false, message: 'User not found' });
+      }
+  
+      res.json(user.leaveRequests || []);
+    } catch (error) {
+      console.error('Error fetching leave requests:', error);
+      res.status(500).json({ success: false, message: 'Failed to fetch leave requests' });
+    }
+  });
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

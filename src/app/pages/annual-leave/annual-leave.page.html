@@ -54,7 +54,33 @@
     <div class="days-number">18</div>
     <div class="days-label">Days until Holidays</div>
   </div>
+
+  <div *ngIf="showRequests && leaveRequests.length > 0" class="leave-requests">
+    <h3>Your Leave Requests:</h3>
+    <ion-list>
+      <ion-item *ngFor="let request of leaveRequests">
+        <ion-label>
+          From: {{ request.startDate | date:'mediumDate' }}<br>
+          To: {{ request.endDate | date:'mediumDate' }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  
+  <div>
+    <ion-list>
+      <ion-item *ngFor="let request of leaveRequests">
+        <ion-label>
+          Leave requested: {{ request.startDate }} to {{ request.endDate }}
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+  
 </ion-content>
+
+
 
 <ion-footer>
   <ion-toolbar>
