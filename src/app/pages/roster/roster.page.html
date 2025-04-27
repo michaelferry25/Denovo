@@ -2,16 +2,16 @@
 
   <!-- Top Navbar -->
   <div class="top-navbar">
-    <ion-button fill="clear" routerLink="/home">
+    <ion-button fill="clear" (click)="goToHome()">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-button>
     <div class="title">Roster</div>
     <div class="nav-icons">
-      <ion-icon name="notifications-outline"></ion-icon>
-      <ion-icon name="mail-outline"></ion-icon>
-      <ion-button routerLink="/profile">
+      <ion-icon [class.clicked]="notificationsClicked" name="notifications-outline" (click)="toggleNotifications()"></ion-icon>
+      <ion-icon [class.clicked]="messagesClicked" name="mail-outline" (click)="toggleMessages()"></ion-icon>
+      <ion-button fill="clear" (click)="goToProfile()">
         <ion-icon name="person-circle-outline"></ion-icon>
-    </ion-button>
+      </ion-button>
     </div>
   </div>
 
@@ -39,13 +39,35 @@
   </div>
 
   <!-- Employee Info Card -->
-  <div class="employee-info">
-    <img [src]="user.logo" alt="Company Logo" />
-    <h5>{{ user.employer }}</h5>
-    <h6>{{ user.department }}</h6>
-    <p>{{ user.name }}</p>
-    <p>{{ user.title }}</p>
-    <p>Employee Number: {{ user.employeeNumber }}</p>
+  <div class="company-info">
+    <div class="company-card">
+      <img [src]="logoUrl || '/assets/logo-placeholder.png'" alt="Company Logo" class="company-logo">
+      <h5>{{ companyData?.name || 'Company Name' }}</h5>
+      <h6>{{ companyData?.department || 'Department' }}</h6>
+      <p>{{ companyData?.employeeName || 'Employee Name' }}</p>
+      <p>{{ companyData?.title || 'Job Title' }}</p>
+      <p>Employee Number: {{ employeeNumber || 'EMP12345' }}</p>
+    </div>
   </div>
+  
+  
+
+  <!-- Bottom Navbar -->
+  <ion-footer class="bottom-navbar">
+    <ion-tab-bar>
+      <ion-tab-button (click)="goToHome()">
+        <ion-icon name="home-outline"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="goToCalendar()">
+        <ion-icon name="calendar-number-outline"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="goToRoster()">
+        <ion-icon name="calendar-outline"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="goToActions()">
+        <ion-icon name="briefcase-outline"></ion-icon>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-footer>
 
 </ion-content>

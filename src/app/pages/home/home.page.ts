@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -31,27 +31,59 @@ export class HomePage {
     'Submit project before leave',
   ];
 
-  constructor(private router: Router) {}
+  notificationsRead = false;
+  messagesRead = false;
+
+  constructor(private router: Router, private toastController: ToastController) {}
 
   signOut() {
     this.router.navigate(['/login']);
   }
-  goToProfile() {
-    this.router.navigateByUrl('/profile');
-  }
+
   goToAnnualLeave() {
     this.router.navigate(['/annual-leave']);
   }
-  goToCalendar(){
+  goToProfile() {
+    this.router.navigateByUrl('/profile');
+  }
+
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
+  goToCalendar() {
     this.router.navigate(['/calendar']);
   }
-  goToRoster(){
+
+  goToRoster() {
     this.router.navigate(['/roster']);
   }
-  goToActions(){
+
+  goToActions() {
     this.router.navigate(['/actions']);
   }
-  goToLandingPage(){
+
+  goToLandingPage() {
     this.router.navigate(['/landing']);
+  }
+
+  async openNotifications() {
+    this.notificationsRead = true;
+    const toast = await this.toastController.create({
+      message: 'No new notifications!',
+      duration: 2000,
+      color: 'primary',
+    });
+    await toast.present();
+  }
+
+  async openMessages() {
+    this.messagesRead = true;
+    const toast = await this.toastController.create({
+      message: 'No new messages!',
+      duration: 2000,
+      color: 'primary',
+    });
+    await toast.present();
   }
 }

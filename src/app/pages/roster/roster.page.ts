@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-roster',
   standalone: true,
-  imports: [IonicModule, CommonModule, RouterModule],
+  imports: [IonicModule, CommonModule, RouterLink, HttpClientModule],
   templateUrl: './roster.page.html',
   styleUrls: ['./roster.page.scss']
 })
@@ -14,22 +16,24 @@ export class RosterPage implements OnInit {
   currentWeekStart!: Date;
   currentWeekEnd!: Date;
   weekDays: any[] = [];
-  user = {
-    name: 'Employee Name',
-    title: 'Job Title',
-    department: 'Department Name',
-    employer: 'Company Name',
-    employeeNumber: 'EMP12345',
-    logo: '/assets/logo-placeholder.png' // placeholder
-  };
+
+  notificationsClicked = false;
+  messagesClicked = false;
+
+  companyData: any = null;
+  employeeNumber: string = '';
+  logoUrl: string = '';
+
+  constructor(private router: Router, private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.generateWeek(new Date());
+    this.loadCompanyInfo();
   }
 
   generateWeek(date: Date) {
     const day = date.getDay();
-    const diffToMonday = day === 0 ? -6 : 1 - day; // If Sunday, go back 6 days
+    const diffToMonday = day === 0 ? -6 : 1 - day;
     this.currentWeekStart = new Date(date);
     this.currentWeekStart.setDate(date.getDate() + diffToMonday);
     this.currentWeekEnd = new Date(this.currentWeekStart);
@@ -63,5 +67,61 @@ export class RosterPage implements OnInit {
 
   formatDate(date: Date) {
     return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
+  }
+
+  toggleNotifications() {
+    this.notificationsClicked = !this.notificationsClicked;
+  }
+
+  toggleMessages() {
+    this.messagesClicked = !this.messagesClicked;
+  }
+
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
+  goToCalendar() {
+    this.router.navigate(['/calendar']);
+  }
+
+  goToRoster() {
+    this.router.navigate(['/roster']);
+  }
+
+  goToActions() {
+    this.router.navigate(['/actions']);
+  }
+
+  goToLandingPage() {
+    this.router.navigate(['/landing']);
+  }
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  }
+
+  loadCompanyInfo() {
+    const userEmail = localStorage.getItem('userEmail');
+    if (userEmail) {
+      this.http.get<any>(`http://localhost:3000/api/user-info?email=${userEmail}`).subscribe(
+        (response) => {
+          if (response) {
+            this.companyData = {
+              name: response.company.name,
+              department: response.company.department,
+              title: response.company.title
+            };
+            this.employeeNumber = response.employeeNumber; 
+            this.logoUrl = response.company.logo;
+            
+            this.cdr.detectChanges(); 
+          }
+        },
+        (error) => {
+          console.error('Failed to load company info:', error);
+        }
+      );
+    }
   }
 }

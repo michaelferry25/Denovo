@@ -5,8 +5,8 @@
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-button>
     <div class="top-icons">
-      <ion-icon name="notifications-outline"></ion-icon>
-      <ion-icon name="mail-outline"></ion-icon>
+      <ion-icon name="notifications-outline" (click)="openNotifications()"></ion-icon>
+      <ion-icon name="mail-outline" (click)="openMessages()"></ion-icon>
       <ion-button fill="clear" class="profile-icon" (click)="goToProfile()">
         <ion-icon name="person-circle-outline"></ion-icon>
       </ion-button>
@@ -102,19 +102,19 @@
   <!-- Bottom Navbar -->
   <ion-footer class="bottom-navbar">
     <ion-tab-bar>
-      <ion-tab-button tab="home">
+      <ion-tab-button (click)="goToHome()">
         <ion-icon name="home-outline"></ion-icon>
       </ion-tab-button>
-      <ion-tab-button tab="roster">
+      <ion-tab-button (click)="goToCalendar()">
+        <ion-icon name="calendar-number-outline"></ion-icon>
+      </ion-tab-button>
+      <ion-tab-button (click)="goToRoster()">
         <ion-icon name="calendar-outline"></ion-icon>
       </ion-tab-button>
-      <ion-tab-button tab="calendar">
-        <ion-icon name="today-outline"></ion-icon>
-      </ion-tab-button>
-      <ion-tab-button tab="actions">
+      <ion-tab-button (click)="goToActions()">
         <ion-icon name="briefcase-outline"></ion-icon>
-        <ion-badge color="danger">1</ion-badge>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-footer>
+  
 </ion-content>
