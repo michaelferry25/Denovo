@@ -1,22 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule
-  ],
+  imports: [IonicModule, CommonModule, FormsModule, HttpClientModule],
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })
-export class SignupPage implements OnInit {
-
+export class SignupPage {
   form = {
     firstName: '',
     surname: '',
@@ -29,22 +25,27 @@ export class SignupPage implements OnInit {
     acceptTerms: false
   };
 
-  agreedToTerms = false; 
+  agreedToTerms = false;
 
-  constructor(private toastController: ToastController, private router: Router) {}
+  constructor(
+    private toastController: ToastController,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   ngOnInit() {
     const agreed = localStorage.getItem('agreedToTerms');
     this.agreedToTerms = agreed === 'true';
-    this.form.acceptTerms = this.agreedToTerms; 
+    this.form.acceptTerms = this.agreedToTerms;
   }
 
   async submitForm() {
     const {
       firstName, surname, dob, employerNumber,
-      email, confirmEmail, password, confirmPassword
+      email, confirmEmail, password, confirmPassword, acceptTerms
     } = this.form;
 
+    // Frontend validation
     if (
       !firstName || !surname || !dob || !employerNumber ||
       !email || !confirmEmail || !password || !confirmPassword
@@ -60,13 +61,29 @@ export class SignupPage implements OnInit {
       return this.showToast('Passwords do not match');
     }
 
-    if (!this.agreedToTerms) {
+    if (!acceptTerms) {
       return this.showToast('You must accept the Terms & Conditions');
     }
 
-    // Success: Navigate to login
-    await this.showToast('✅ Account created! (this is a placeholder)');
-    this.router.navigateByUrl('/login');
+    try {
+      const response: any = await this.http.post('http://localhost:3000/api/signup', {
+        firstName,
+        surname,
+        dob,
+        employerNumber,
+        email,
+        password
+      }).toPromise();
+
+      if (response.success) {
+        this.showToast('✅ Account created successfully!');
+        this.router.navigateByUrl('/login');
+      } else {
+        this.showToast(response.message || 'Signup failed');
+      }
+    } catch (error: any) {
+      this.showToast(error.error?.message || 'Signup failed. Please try again.');
+    }
   }
 
   async showToast(message: string) {
@@ -78,11 +95,8 @@ export class SignupPage implements OnInit {
     });
     toast.present();
   }
-  
+
   goBack() {
     this.router.navigateByUrl('/landing');
-  }
-  goToTerms(){
-    this.router.navigateByUrl('/terms');
   }
 }

@@ -1,29 +1,42 @@
-<ion-content class="login-background">
+<ion-content class="login-page">
+  <div class="page-container">
+    <div class="logo-container">
+      <img src="/assets/DenovoLogoBanner.jpg" alt="Denovo Logo" class="logo" />
+    </div>
 
-  <!-- Back Button -->
-  <ion-button fill="clear" class="back-button" (click)="goBack()">
-    <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-  </ion-button>
+    <div class="welcome-text">
+      <h1>Welcome to Denovo!</h1>
+      <p>Login to get Started Today!</p>
+    </div>
 
-  <div class="header-section">
-    <img src="/assets/DenovoLogoBanner.jpg" alt="Denovo Logo" />
-    <h2 class="welcome-text">Welcome to<br />Denovo!</h2>
-    <h3 class="sub-text">Login to get<br />Started Today!</h3>
+    <div class="form-container">
+      <form (ngSubmit)="login()">
+        <ion-input 
+          type="email" 
+          placeholder="Email" 
+          [(ngModel)]="email" 
+          name="email" 
+          required
+          class="input-field">
+        </ion-input>
+
+        <ion-input 
+          type="password" 
+          placeholder="Password" 
+          [(ngModel)]="password" 
+          name="password" 
+          required
+          class="input-field">
+        </ion-input>
+
+        <div class="forgot-password">
+          <p>Forgot Password? <a routerLink="/recover">Click here to Reset.</a></p>
+        </div>
+
+        <ion-button expand="block" type="submit" class="login-button">
+          LOGIN
+        </ion-button>
+      </form>
+    </div>
   </div>
-
-  <div class="form-card">
-    <label>Email</label>
-    <ion-input type="email" fill="outline" class="input" placeholder="Enter your email"></ion-input>
-
-    <label>Password</label>
-    <ion-input type="password" fill="outline" class="input" placeholder="Enter your password"></ion-input>
-
-    <p class="reset-link">
-      Forgot Password?
-      <a routerLink="/forgot-password">Click here to Reset.</a>
-    </p>
-
-    <ion-button expand="block" (click)="login()">Login</ion-button>
-  </div>
-
 </ion-content>

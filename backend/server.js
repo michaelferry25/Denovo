@@ -1,0 +1,80 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+
+// Set up app
+const app = express();
+const PORT = 3000;
+
+// Middleware
+app.use(express.json());
+app.use(cors());
+
+// MongoDB Connection
+mongoose.connect('mongodb://127.0.0.1:27017/denovo', {
+})
+.then(() => console.log('MongoDB Connected Successfully'))
+.catch((err) => console.error('MongoDB Connection Error:', err));
+
+// User model
+const User = mongoose.model('User', new mongoose.Schema({
+  firstName: String,
+  surname: String,
+  dob: String,
+  employerNumber: String,
+  email: { type: String, unique: true },
+  password: String,
+}));
+
+app.post('/api/signup', async (req, res) => {
+  const { firstName, surname, dob, employerNumber, email, password } = req.body;
+
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
+
+    const newUser = new User({
+      firstName,
+      surname,
+      dob,
+      employerNumber,
+      email,
+      password,
+    });
+
+    await newUser.save();
+    res.status(201).json({ success: true, message: 'User registered successfully' });
+
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Signup failed', error: error.message });
+  }
+});
+
+// POST /api/login
+app.post('/api/login', async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({ success: false, message: 'User not found' });
+    }
+
+    if (user.password !== password) {
+      return res.status(400).json({ success: false, message: 'Incorrect password' });
+    }
+
+    res.json({ success: true, message: 'Login successful' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server error', error: error.message });
+  }
+});
+  
+
+// Start Server
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
