@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -30,7 +31,7 @@ export class SignupPage implements OnInit {
 
   agreedToTerms = false; 
 
-  constructor(private toastController: ToastController) {}
+  constructor(private toastController: ToastController, private router: Router) {}
 
   ngOnInit() {
     const agreed = localStorage.getItem('agreedToTerms');
@@ -41,10 +42,9 @@ export class SignupPage implements OnInit {
   async submitForm() {
     const {
       firstName, surname, dob, employerNumber,
-      email, confirmEmail, password, confirmPassword, acceptTerms
+      email, confirmEmail, password, confirmPassword
     } = this.form;
 
-    // Check all fields
     if (
       !firstName || !surname || !dob || !employerNumber ||
       !email || !confirmEmail || !password || !confirmPassword
@@ -52,22 +52,21 @@ export class SignupPage implements OnInit {
       return this.showToast('Please fill in all fields');
     }
 
-    // Check email match
     if (email !== confirmEmail) {
       return this.showToast('Emails do not match');
     }
 
-    // Check password match
     if (password !== confirmPassword) {
       return this.showToast('Passwords do not match');
     }
 
-    // Check terms
-    if (!acceptTerms) {
+    if (!this.agreedToTerms) {
       return this.showToast('You must accept the Terms & Conditions');
     }
 
-    this.showToast('✅ Account created! (this is a placeholder)');
+    // Success: Navigate to login
+    await this.showToast('✅ Account created! (this is a placeholder)');
+    this.router.navigateByUrl('/login');
   }
 
   async showToast(message: string) {
@@ -78,5 +77,12 @@ export class SignupPage implements OnInit {
       position: 'top'
     });
     toast.present();
+  }
+  
+  goBack() {
+    this.router.navigateByUrl('/landing');
+  }
+  goToTerms(){
+    this.router.navigateByUrl('/terms');
   }
 }

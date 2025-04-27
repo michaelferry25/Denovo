@@ -1,6 +1,7 @@
 <ion-content class="login-background">
 
-  <ion-button fill="clear" class="back-button" routerLink="/landing">
+  <!-- Back Button -->
+  <ion-button fill="clear" class="back-button" (click)="goBack()">
     <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
   </ion-button>
 
@@ -22,7 +23,7 @@
       <a routerLink="/forgot-password">Click here to Reset.</a>
     </p>
 
-    <ion-button expand="block" class="login-button">Login</ion-button>
+    <ion-button expand="block" (click)="login()">Login</ion-button>
   </div>
 
 </ion-content>

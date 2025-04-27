@@ -1,7 +1,7 @@
 <ion-content class="signup-background">
 
   <!-- Back Button -->
-  <ion-button fill="clear" class="back-button" routerLink="/landing">
+  <ion-button fill="clear" class="back-button" (click)="goBack()">
     <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
   </ion-button>
 
@@ -45,13 +45,12 @@
   
     <div class="terms">
       <ion-toggle [(ngModel)]="agreedToTerms"></ion-toggle>
-      <span>I have read and agree to <a routerLink="/terms">Terms & Conditions.</a></span>
+      <span>I have read and agree to <a (click)="goToTerms()">Terms & Conditions.</a></span>
     </div>
   
     <ion-button expand="block" class="signup-button" (click)="submitForm()">Create Account</ion-button>
   
     <p class="signin-link">
-      Already Have An Account? <a routerLink="/login">Sign In</a>
     </p>
   </div>
 

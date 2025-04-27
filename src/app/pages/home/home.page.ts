@@ -51,4 +51,7 @@ export class HomePage {
   goToActions(){
     this.router.navigate(['/actions']);
   }
+  goToLandingPage(){
+    this.router.navigate(['/landing']);
+  }
 }
